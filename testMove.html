@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  
+  <style>
+    #container{
+      height:400px;
+      width:600px;
+      outline:1px solid black;
+      position:relative;
+    }
+    #guy{
+      position:absolute;
+      height:50px;
+      width:50px;
+      left:0px;
+      outline:1px solid black;
+      background:#efefef;
+    }
+  </style>
+</head>
+<body onkeyup="key(event)">
+  <div id="container">
+    <div id="guy">
+    </div>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>
+    var guy = document.getElementById('guy');
+    var con = document.getElementById('container');
+    var l = 0;
+    var t = 0;
+    function key(event){
+      var key = event.keyCode;
+      if(key == 39){
+        //l+=3;
+        $(document).ready(function(){
+          $(document).keypress(function(){
+            l+=3;
+            guy.style.left = l+'px';
+            //alert("Right");
+          });
+        });
+      } 
+      else if(key == 37  && l>=3){
+        $(document).ready(function(){
+          $(document).keypress(function(){
+            l-=3;
+            guy.style.left = l+'px';
+            //alert("Left");
+          });
+        });
+      }
+      else if(key == 38 && t>=3){
+        t-=3;
+        guy.style.top = t+'px';
+        //alert("Up");
+      }  
+      else if(key == 40){
+        t+=3;
+        guy.style.top = t+'px';
+        //alert("Down");
+      } 
+      //else alert(key);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  
+  <style type="text/css">
+    #box2{
+      width:600px;
+    }
+    #box3{
+      width:300px;
+      height:250px;
+      margin-top:20px;
+      
+    }
+    #tabs{
+      width:100%;
+      padding:0;
+      margin:0;
+    }
+    
+    #tabs ul{
+      width:100%;
+      padding:0;
+      margin:0;
+    }
+    #tabs li{
+      display:block;
+      float:left;
+      text-align:center;
+      background:#ccc;
+      border:1px solid #999;
+      margin:0;
+      padding:0;
+      width:32.9%;
+      color:#999;
+      cursor:pointer;
+      text-transform:uppercase;
+    }
+    #tabs li.active{
+      background:#efefef;
+      border-bottom:1px solid #efefef;
+    }
+    
+    #con{
+      width:100%;
+    }
+    #con div{
+      clear:left;
+      background:#efefef;
+      width:100%;
+      height:200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <img id = "p" src="img/forTest/m.png" width="209" height="148" ><br/>
+    Multiple: <input id="mp" type="text" ><br/>
+    <input type="button" value="change" onclick="upload()">
+  </div>
+  <div id="box2">
+    <div id="tabs">
+      <ul>
+        <li class="active">tab1</li>
+        <li>tab2</li>
+        <li>tab3</li>
+      </ul>
+    </div>
+    <br>
+    <div id="con">
+      <div>Text 1</div>
+      <div>Text 2</div>
+      <div>Text 3</div>
+    </div>
+  </div>
+  <div id="box3">
+  </div><br />
+  Multiple: <input id="mp1" type="text" ><br/>
+  <input type="button" value="add" onclick="add()">  
+  <input type="button" value="change" onclick="upload1()">
+  <script type="text/javascript">
+    google.load('jquery','1.4.3');
+    
+    google.setOnLoadCallback(
+      function(){
+        $('#con div:not(:first)').hide();
+        //$('#con div').hide().filter(':first').show();//the other way
+        $('#tabs li').click(function(e){          
+          var id = $(e.target).index();
+          $('.active').removeClass('active');
+          $(e.target).addClass('active');
+          $('#con div').hide().eq(id).show();
+        });
+
+      }
+    );
+    
+    function upload(){
+    var id = document.getElementById("p");
+    var multiple = document.getElementById("mp");
+    //id.src = "img/button1.png";
+    if(multiple.value>0){
+      id.width *=multiple.value;
+      id.height *=multiple.value;
+    }
+      
+  }
+    //javascript for changing the backgroundSize
+    var pImg;
+    function add(){
+      pImg = document.getElementById("box3");
+      pImg.style.background = "url('img/forTest/m.png') no-repeat";
+    }
+    function upload1(){
+      var multiple = document.getElementById("mp1");
+      var pct = multiple.value;
+      //pImg.style.background = "";
+      pImg.style.backgroundSize = pct+"%";
+    }
+  </script>
+</body>
+</html>
